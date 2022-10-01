@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>留言板</title>
+  <style>
+    body {
+      --color-text-black: #3D3D3D;
+      --color-green: #3AA253;
+      font-family: sans-serif;
+      margin: 0;
+      background-color: #E8E8E8;
+    }
+    .main {
+      box-sizing: border-box;
+      padding: 30px;
+      width: 600px;
+      margin: 0 auto;
+      background: #FFFFFF;
+    }
+    .main .form {
+      text-align: right;
+    }
+    .main .form textarea {
+      resize: none;
+      font-size: 18px;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      display: block;
+      height: 77px;
+      border: 0;
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+    }
+    .main .form button {
+      margin-top: 25px;
+      width: 90px;
+      height: 40px;
+      border-radius: 5px;
+      border: 0;
+      font-size: 18px;
+      color: #fff;
+      background-color: var(--color-green);
+    }
+
+    .main .items {
+      color: var(--color-text-black);
+      line-height: 26px;
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+    .main .items .item {
+      margin-top: 25px;
+    }
+    .main .items .item .footer {
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .pagination .page {
+      width: 21px;
+      height: 23px;
+      font-size: 12px;
+      line-height: 23px;
+      margin-left: 10px;
+      color: var(--color-text-black);
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .pagination .page:hover {
+      color: var(--color-green)
+    }
+
+    .pagination .page.current {
+      background-color: var(--color-green);
+      color: #fff;
+      cursor: default;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <form class="form" action="/" method="post">
+      <textarea placeholder="写点啥..." name="text"></textarea>
+      <button type="submit">提交</button>
+    </form>
+
+    <div class="items">
+      <div class="item">
+        <div class="content">小农户与其他农产品电商经营主体相比劣势明显。近些年来，小农户大量退出电商，以前的淘宝村等电商村大量瓦解。对于留下来的，出奇招博眼球只是生存之道而已，无可厚非。</div>
+        <div class="footer">2022-11-22 15:30:21</div>
+      </div>
+      <div class="item">
+        <div class="content">小农户与其他农产品电商经营主体相比劣势明显。近些年来，小农户大量退出电商，以前的淘宝村等电商村大量瓦解。对于留下来的，出奇招博眼球只是生存之道而已，无可厚非。</div>
+        <div class="footer">2022-11-22 15:30:21</div>
+      </div>
+      <div class="item">
+        <div class="content">小农户与其他农产品电商经营主体相比劣势明显。近些年来，小农户大量退出电商，以前的淘宝村等电商村大量瓦解。对于留下来的，出奇招博眼球只是生存之道而已，无可厚非。</div>
+        <div class="footer">2022-11-22 15:30:21</div>
+      </div>
+      <div class="item">
+        <div class="content">小农户与其他农产品电商经营主体相比劣势明显。近些年来，小农户大量退出电商，以前的淘宝村等电商村大量瓦解。对于留下来的，出奇招博眼球只是生存之道而已，无可厚非。</div>
+        <div class="footer">2022-11-22 15:30:21</div>
+      </div>
+      <div class="item">
+        <div class="content">小农户与其他农产品电商经营主体相比劣势明显。近些年来，小农户大量退出电商，以前的淘宝村等电商村大量瓦解。对于留下来的，出奇招博眼球只是生存之道而已，无可厚非。</div>
+        <div class="footer">2022-11-22 15:30:21</div>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <span class="page current">1</span>
+      <a class="page" href="/?p=2">2</a>
+      <a class="page" href="/?p=3">3</a>
+    </div>
+  </div>
+</body>
+</html>

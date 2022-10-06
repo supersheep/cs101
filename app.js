@@ -1,6 +1,7 @@
 const http = require('http')
 const fs = require('fs')
 
+// npm instal ejs
 const ejs = require('ejs')
 const dayjs = require('dayjs')
 
@@ -23,7 +24,7 @@ http.createServer(async(req, res) => {
   }
 
   function render() {
-    const template = fs.readFileSync('./index.ejs', 'utf-8')
+    const template = fs.readFileSync('./views/index.ejs', 'utf-8')
     const json = JSON.parse(fs.readFileSync('./data.json'))
     let page = 1
     let pageSize = 5

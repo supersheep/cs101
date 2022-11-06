@@ -1,5 +1,5 @@
 const fs = require('fs')
-
+const dayjs = require('dayjs')
 if (!fs.existsSync('./data.json')) {
   fs.writeFileSync('./data.json', '{ "items": [] }')
 }
@@ -7,7 +7,6 @@ if (!fs.existsSync('./data.json')) {
 module.exports = {
   loadPage(page) {
     const json = JSON.parse(fs.readFileSync('./data.json'))
-    let page = 1
     let pageSize = 5
 
     const allItems = [...json.items].reverse()
@@ -22,12 +21,12 @@ module.exports = {
 
     return data
   },
-  add() {
+  add(content) {
     const time = dayjs().format('YYYY-MM-DD HH:mm:ss')
     const json = JSON.parse(fs.readFileSync('./data.json'))
     const id = json.items.length + 1
     json.items.push({
-      content: value,
+      content,
       time,
       id
     })

@@ -1,47 +1,68 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script>
+import MessageItem from "./components/MessageItem.vue";
+import PaginationFooter from "./components/PaginationFooter.vue";
+import InputForm from "./components/InputForm.vue";
+
+export default {
+  components: {
+    InputForm,
+    PaginationFooter,
+    MessageItem,
+  },
+  data() {
+    const currentPage = new URL(location.href).searchParams.get("p") || 1;
+    return {
+      messages: [],
+      currentPage: parseInt(currentPage),
+      totalPages: 1,
+    };
+  },
+  mounted() {
+    this.refresh();
+  },
+  methods: {
+    async refresh() {
+      const resp = await fetch("/api/message?p=" + this.currentPage);
+      const json = await resp.json();
+      this.messages = json.items;
+      this.totalPages = +json.totalPages;
+      this.currentPage = +json.currentPage;
+    },
+    submit(text) {
+      return fetch("/api/message/", {
+        method: "POST",
+        body: "text=" + text,
+      }).then(() => {
+        this.refresh();
+      });
+    },
+  },
+};
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div class="main">
+    <InputForm @submit="submit" />
+    <div class="items">
+      <MessageItem v-for="item in messages" :key="item.id" :item="item" />
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <PaginationFooter :totalPages="totalPages" :currentPage="currentPage" />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style>
+body {
+  --color-text-black: #3d3d3d;
+  --color-green: #3aa253;
+  font-family: sans-serif;
+  margin: 0;
+  background-color: #e8e8e8;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.main {
+  box-sizing: border-box;
+  padding: 30px;
+  width: 600px;
+  margin: 0 auto;
+  background: #ffffff;
 }
 </style>

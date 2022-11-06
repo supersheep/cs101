@@ -28,7 +28,6 @@ http.createServer(async(req, res) => {
     const json = JSON.parse(fs.readFileSync('./data.json'))
     let page = 1
     let pageSize = 5
-    
 
     const allItems = [...json.items].reverse()
     const items = [...allItems].splice((page - 1) * pageSize, pageSize)

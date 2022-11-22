@@ -29,6 +29,7 @@ export default {
 .pagination {
   display: flex;
   justify-content: flex-end;
+  margin-top: 50px;
   .page {
     width: 21px;
     height: 23px;

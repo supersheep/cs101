@@ -31,7 +31,18 @@ export default {
     submit(text) {
       return fetch("/api/message/", {
         method: "POST",
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        },
         body: "text=" + text,
+      }).then(() => {
+        this.refresh();
+      });
+    },
+    removeItem(item) {
+      confirm("确定要删除#" + item.id + "么");
+      fetch("/api/message/" + item.id, {
+        method: "DELETE",
       }).then(() => {
         this.refresh();
       });
@@ -44,7 +55,12 @@ export default {
   <div class="main">
     <InputForm @submit="submit" />
     <div class="items">
-      <MessageItem v-for="item in messages" :key="item.id" :item="item" />
+      <MessageItem
+        v-for="item in messages"
+        :key="item.id"
+        :item="item"
+        @remove="removeItem"
+      />
     </div>
     <PaginationFooter :totalPages="totalPages" :currentPage="currentPage" />
   </div>

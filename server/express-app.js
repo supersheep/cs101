@@ -21,7 +21,7 @@ app.post('/message', (req, res) => {
 
 app.delete('/message/:id', (req, res) => {
   const { id } = req.params
-  guestBookService.delete(text)
+  guestBookService.delete(id)
   res.send({
     success: true
   })

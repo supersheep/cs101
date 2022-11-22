@@ -8,6 +8,7 @@ export default {
   methods: {
     submit() {
       this.$emit("submit", this.text);
+      this.text = "";
     },
   },
 };

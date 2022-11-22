@@ -20,9 +20,7 @@ export default {
 <template>
   <div class="pagination">
     <template v-for="page in pages">
-      <span v-if="currentPage == page" :key="page" class="page current">{{
-        page
-      }}</span>
+      <span v-if="currentPage == page" :key="page" class="page current">{{ page }}</span>
       <a v-else :key="page" class="page" :href="'/?p=' + page">{{ page }}</a>
     </template>
   </div>

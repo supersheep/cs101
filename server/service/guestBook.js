@@ -31,6 +31,7 @@ module.exports = {
       id
     })
     fs.writeFileSync('./data.json', JSON.stringify(json, null, 2))
+    return id
   },
   delete(id) {
     const json = JSON.parse(fs.readFileSync('./data.json'))

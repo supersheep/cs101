@@ -12,9 +12,10 @@ app.get('/message', (req, res) => {
 })
 
 app.post('/message', (req, res) => {
-  const { text } = req.body
-  guestBookService.add(text)
+  const { content } = req.body
+  const id = guestBookService.add(content)
   res.send({
+    id,
     success: true
   })
 })

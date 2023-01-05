@@ -30,19 +30,17 @@ class HomeViewModel: ViewModel() {
         }
     }
 
-    fun addMessage() {
-        viewModelScope.launch {
-            try {
-                val resp = messageService.addMessage(AddMessageReq(text.value))
-                val message = Message(resp.id, text.value, Date())
-                val result = mutableListOf<Message>()
-                result.add(message)
-                result.addAll(messages.value)
-                messages.value = result
-                text.value = ""
-            } catch (e: java.lang.Error) {
-                print(e)
-            }
+    suspend fun addMessage() {
+        try {
+            val resp = messageService.addMessage(AddMessageReq(text.value))
+            val message = Message(resp.id, text.value, Date())
+            val result = mutableListOf<Message>()
+            result.add(message)
+            result.addAll(messages.value)
+            messages.value = result
+            text.value = ""
+        } catch (e: java.lang.Error) {
+            print(e)
         }
     }
 }

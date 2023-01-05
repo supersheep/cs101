@@ -28,6 +28,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.listsample.model.HomeViewModel
 import com.example.listsample.model.Message
 import com.example.listsample.ui.theme.ListSampleTheme
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -46,6 +47,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen(homeViewModel: HomeViewModel) {
+    val coroutineScope = rememberCoroutineScope()
     val focusManager = LocalFocusManager.current
     val interactionSource = remember {
         MutableInteractionSource()
@@ -58,7 +60,9 @@ fun MainScreen(homeViewModel: HomeViewModel) {
         InputHead(homeViewModel.text.value, { it
             homeViewModel.updateText(it)
         }) {
-            homeViewModel.addMessage()
+            coroutineScope.launch {
+                homeViewModel.addMessage()
+            }
         }
         Conversation(messages = homeViewModel.messages.value)
     }

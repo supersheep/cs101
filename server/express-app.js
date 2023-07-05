@@ -4,7 +4,7 @@ const guestBookService = require('./service/guestBook')
 const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
-
+app.use(bodyParser.json())
 app.get('/message', (req, res) => {
   const page = req.query.p
   const pageModel = guestBookService.loadPage(page)

@@ -22,7 +22,7 @@ module.exports = {
     return data
   },
   add(content) {
-    const time = +new Date()
+    const time = new Date()
     const json = JSON.parse(fs.readFileSync('./data.json'))
     const id = json.items.length + 1
     json.items.push({

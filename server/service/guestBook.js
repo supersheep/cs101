@@ -7,7 +7,7 @@ if (!fs.existsSync('./data.json')) {
 module.exports = {
   loadPage(page) {
     const json = JSON.parse(fs.readFileSync('./data.json'))
-    let pageSize = 5
+    let pageSize = 10
 
     const allItems = [...json.items].reverse()
     const items = [...allItems].splice((page - 1) * pageSize, pageSize)
@@ -22,7 +22,7 @@ module.exports = {
     return data
   },
   add(content) {
-    const time = dayjs().format('YYYY-MM-DD HH:mm:ss')
+    const time = +new Date()
     const json = JSON.parse(fs.readFileSync('./data.json'))
     const id = json.items.length + 1
     json.items.push({

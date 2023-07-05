@@ -9,8 +9,8 @@ if (!fs.existsSync('./data.json')) {
   fs.writeFileSync('./data.json', '{ "items": [] }')
 }
 
-http.createServer(async(req, res) => {
-  
+http.createServer(async (req, res) => {
+
   const [path, qs] = req.url.split('?')
   const query = {}
   if (qs) {
@@ -63,7 +63,7 @@ http.createServer(async(req, res) => {
     }
 
     if (req.method === 'POST') {
-      const time = dayjs().format('YYYY-MM-DD HH:mm:ss')
+      const time = +dayjs().toDate()
       const json = JSON.parse(fs.readFileSync('./data.json'))
       const id = json.items.length + 1
       json.items.push({

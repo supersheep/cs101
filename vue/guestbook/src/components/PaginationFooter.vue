@@ -19,11 +19,11 @@ export default {
 </script>
 <template>
   <div class="pagination">
-    <template v-for="page in pages">
+    <template v-for="(page, i) in pages">
       <span v-if="currentPage == page" :key="page" class="page current">{{
         page
       }}</span>
-      <a v-else :key="page" class="page" :href="'/?p=' + page">{{ page }}</a>
+      <a v-else :key="i" class="page" :href="'/?p=' + page">{{ page }}</a>
     </template>
   </div>
 </template>
